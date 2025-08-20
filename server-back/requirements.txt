@@ -1,0 +1,6 @@
+aiortc
+onnxruntime
+aiohttp
+python-dotenv
+opencv-python
+numpy
