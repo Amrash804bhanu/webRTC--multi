@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC VLM Object Detection</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Real-time WebRTC Object Detection</h1>
+      <div class="video-section">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <canvas id="overlayCanvas"></canvas>
+        <video
+          id="remoteVideo"
+          autoplay
+          playsinline
+          style="display: none"
+        ></video>
+        <div id="loadingIndicator" class="hidden">Loading model...</div>
+      </div>
+      <div class="controls">
+        <button id="startButton">Start Stream</button>
+        <div id="qrCodeContainer"></div>
+        <p>Scan this QR code with your phone's browser.</p>
+        <p>Or navigate to: <span id="localUrl"></span></p>
+      </div>
+      <div class="metrics-section">
+        <h2>Metrics</h2>
+        <p>End-to-End Latency (ms): <span id="e2eLatency">N/A</span></p>
+        <p>Processed FPS: <span id="processedFps">N/A</span></p>
+        <p>Uplink Bandwidth (kbps): <span id="uplinkKbps">N/A</span></p>
+        <p>Downlink Bandwidth (kbps): <span id="downlinkKbps">N/A</span></p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js/qrcode.min.js"></script>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

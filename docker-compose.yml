@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: . # Sets the build context to the root of the project
+      dockerfile: ./docker/frontend/Dockerfile # Specifies the location of the Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src/frontend:/app/src
+    command: sh -c "cd /app/src && npm install && npm start"
+    environment:
+      - NODE_ENV=development
+      - MODE=${MODE:-wasm} # Default to WASM mode
+
+  backend:
+    build:
+      context: . # Also set the context to the project root for consistency
+      dockerfile: ./docker/backend/Dockerfile
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./src/backend:/app/src
+      - ./models:/app/models
+    command: sh -c "cd /app/src && pip install -r requirements.txt && python server.py"
+    environment:
+      - MODE=${MODE:-wasm}
+    depends_on:
+      - frontend
